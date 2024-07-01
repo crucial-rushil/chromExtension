@@ -47,3 +47,4 @@ mongoose.connect(connection_string)
         console.log(error)
     })
 
+console.log("testy")
