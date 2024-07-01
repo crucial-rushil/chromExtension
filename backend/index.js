@@ -11,7 +11,7 @@ dotenv.config();
 const app = express()
 
 //specify port number
-const port = process.env.PORT || 4000; 
+const port = process.env.PORT 
 
 //NOTE: we should eventually keep only one of the formats to PARSE requests and send all requests in that format
 //automatically PARSE all requests sent in JSON Format
@@ -39,7 +39,7 @@ var connection_string = process.env.DB_CONNECTION
 mongoose.connect(connection_string)
     .then(()=> {
         //listen from requesets
-        app.listen(4000, ()=>{
+        app.listen(port, ()=>{
             console.log("listening on port 4000!!")
         })
     })
@@ -47,7 +47,3 @@ mongoose.connect(connection_string)
         console.log(error)
     })
 
-// Start the server
-// app.listen(port, () => {
-//     console.log(`Server is running on http://localhost:${port}`);
-// });
