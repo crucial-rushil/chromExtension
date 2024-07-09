@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import routes from './routes.js'
 
 //Load and Define Sensitive Information from Environment Variables
 dotenv.config();
@@ -32,9 +33,13 @@ app.use((req, res, next)=> {
     next() //pass control to next middleware function
 })
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the backend.');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the backend.');
+// });
+
+//react to requests
+app.use('/',routes)
+
 var connection_string = process.env.DB_CONNECTION
 mongoose.connect(connection_string)
     .then(()=> {
