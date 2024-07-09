@@ -17,3 +17,6 @@ How to Make Changes:
 - locally make changes
 - npm run build
 - hit the reload button in the extension on chrome://extensions
+
+How to Test Backend Routes:
+- use postman and send requests to localhost:4000/[route_name] and debug
