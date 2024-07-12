@@ -18,6 +18,16 @@ const submitReview = async(req, res) =>{
 }
 
 //TODO: Logic to Get all Reviews
+const getReviews = async(req, res) => {
 
+    try{
+        const everyone = await reviews.find({}).sort({createdAt: -1}) //sort by descending order
+        res.status(200).json(everyone) //gives us user documents in an array
+    }
+    catch (error)
+    {
+        res.status(400).json(req.body)
+    }
+}
 
-export {submitReview}
+export {submitReview, getReviews}

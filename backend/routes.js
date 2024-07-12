@@ -5,7 +5,7 @@ import * as functions from './routeLogic.js';
 const router = express.Router();
 
 // TODO: 1. Get all reviews for a house
-//router.get('/getReviews',functions.getReviews)
+router.get('/getReviews',functions.getReviews)
 
 // 2. Submit a Review
 router.post('/submitReview',functions.submitReview)
