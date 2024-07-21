@@ -3,10 +3,12 @@ import './App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
 import ReviewForm from './ReviewForm';
+import Toggle from './Toggle';
 
 function App() {
   const [url, setUrl] = useState('');
   const [details, setDetails] = useState({ bedrooms: '', bathrooms: '' });
+  const [activeToggle, setActiveToggle] = useState('browse');
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
@@ -56,7 +58,8 @@ function App() {
           <p>bedrooms: {details.bedrooms}</p>
           <p>bathrooms: {details.bathrooms}</p>
         </div>
-        <ReviewForm />
+        <Toggle active = {activeToggle} setActive= {setActiveToggle} />
+        {activeToggle === 'write' && <ReviewForm/>}
       </header>
     </div>
   );
