@@ -2,17 +2,17 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema
 const reviews = new Schema({
-    reviewRating: {
+    date: {
         type: String,
         required: true
     },
 
-    reviewTitle: {
+    rating: {
         type: String,
         required: true
     },
 
-    reviewDescription: {
+    description: {
         type: String,
         required: true
     },

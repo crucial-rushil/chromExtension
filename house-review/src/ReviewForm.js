@@ -7,13 +7,30 @@ const ReviewForm = () => {
   const [rating, setRating] = useState(2);
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here, e.g., send data to backend
     console.log({ date, rating, description });
+    const review = { date, rating, description };
+    const response = await fetch('http://localhost:4000/submitReview', {
+      method: 'POST',
+      body: JSON.stringify(review),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      alert("Review Added")
+      console.log("Review Added");
+    } else {
+      console.log(json.error);
+    }
+    
     // Reset form fields after submission if needed
     setDate('');
-    setRating(2);
+    setRating(5);
     setDescription('');
   };
 
@@ -22,6 +39,7 @@ const ReviewForm = () => {
       <div style={{ marginBottom: '1rem' }}>
         <h5 style={{ textAlign: 'left', marginBottom: '0.5rem' }}>date:</h5>
         <TextField
+          name="date"
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
@@ -44,6 +62,7 @@ const ReviewForm = () => {
       <div style={{ marginBottom: '1rem' }}>
         <h5 style={{ textAlign: 'left', marginBottom: '0.5rem' }}>description:</h5>
         <textarea
+          name="review"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows="4"
