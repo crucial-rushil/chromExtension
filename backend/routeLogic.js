@@ -4,11 +4,11 @@ import reviews from './reviewModel.js'
 
 //Logic to post a review
 const submitReview = async(req, res) =>{
-    const {reviewTitle, reviewDescription, reviewRating} = req.body
+    const {date, rating, description} = req.body
 
     //add doc to db
     try {
-        const review = await reviews.create({reviewTitle, reviewDescription, reviewRating})
+        const review = await reviews.create({date, rating, description})
         res.status(200).json(review)
     }
     catch (error)
