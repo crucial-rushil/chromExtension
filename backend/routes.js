@@ -10,4 +10,7 @@ router.get('/getReviews',functions.getReviews)
 // 2. Submit a Review
 router.post('/submitReview',functions.submitReview)
 
+//3. Get House Details
+router.post('/getDetails',functions.getHouseDetails)
+
 export default router
