@@ -14,28 +14,27 @@ function App() {
     setUrl(e.target.value);
   };
 
-  const fetchHouseDetails = async () => {
-    try {
-      // Use CORS proxy or your backend to fetch data
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      const { data } = await axios.get(proxyUrl + url);
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(data, 'text/html');
-
-      // Update selectors to match Redfin's webpage structure
-      const bedrooms = doc.querySelector('.statsValue').textContent.split(' ')[0];
-      const bathrooms = doc.querySelector('.statsValue').nextElementSibling.textContent.split(' ')[0];
-
-      setDetails({ bedrooms, bathrooms });
-    } 
-    catch (error) {
-      console.error('Cannot get house details:', error);
-    }
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetchHouseDetails();
+    const urlSend = { url };
+    const response = await fetch('http://localhost:4000/getDetails', {
+      method: 'POST',
+      body: JSON.stringify(urlSend),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      alert("Information Sent")
+      console.log("INFO SENT");
+    } else {
+      console.log(json.error);
+    }
+    
+    // Reset form fields after submission if needed
+    setUrl('');
   };
 
   return (
