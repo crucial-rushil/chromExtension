@@ -27,8 +27,9 @@ function App() {
     const json = await response.json();
 
     if (response.ok) {
-      alert("Information Sent")
+      alert(JSON.stringify(json, null, 2));
       console.log("INFO SENT");
+      console.log(json)
     } else {
       console.log(json.error);
     }
