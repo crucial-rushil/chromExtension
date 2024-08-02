@@ -54,6 +54,13 @@ function extractId(url) {
 //Get Website Details
 const getHouseDetails = async(req, res) => {
 
+    const home_details = {
+        "address": null,
+        "baths": null,
+        "sqft": null,
+        "bedrooms": null
+    }
+    
     //strip the ID from the URL
     const {url} = req.body
     let propertyId = extractId(url)
@@ -113,27 +120,45 @@ const getHouseDetails = async(req, res) => {
     });
 
     let config = {
-    method: 'post',
-    maxBodyLength: Infinity,
-    url: 'https://www.realtor.com/frontdoor/graphql',
-    headers: { 
-        'rdc-client-name': 'RDC_WEB_DETAILS_PAGE', 
-        'rdc-client-version': '2.0.1146', 
-        'Content-Type': 'application/json', 
-    },
-    data : data
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://www.realtor.com/frontdoor/graphql',
+        headers: { 
+            'rdc-client-name': 'RDC_WEB_DETAILS_PAGE', 
+            'rdc-client-version': '2.0.1146', 
+            'Content-Type': 'application/json', 
+        },
+        data : data
     };
 
     //Send Request to Realtor.com Backend
     axios.request(config)
     .then((response) => {
-        console.log(JSON.stringify(response.data));
-        
+        // console.log(JSON.stringify(response.data));
+        const jsonData = response.data;
+        const parsedData = jsonData;
+
+        const beds = parsedData.data.spot_offer_evaluation.spot_offer.property_details.description.beds;
+        const baths_full = parsedData.data.spot_offer_evaluation.spot_offer.property_details.description.baths_full;
+        const baths_half = parsedData.data.spot_offer_evaluation.spot_offer.property_details.description.baths_half;
+        const sqft = parsedData.data.spot_offer_evaluation.spot_offer.property_details.description.sqft;
+        const addressDetails = parsedData.data.spot_offer_evaluation.spot_offer.property_details.address;
+
+        home_details.address = addressDetails;
+        home_details.baths = baths_full + 0.5*(baths_half);
+        home_details.sqft = sqft;
+        home_details.bedrooms = beds;
+
+        //Send Data Back to the Front-End
+        console.log(home_details)
+        res.status(200).json(home_details)
     })
 
     .catch((error) => {
         console.log(error);
     });
+
+    
 }
 
 export {submitReview, getReviews, getHouseDetails}
