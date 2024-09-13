@@ -1,7 +1,7 @@
-# chromExtension
+# House Reviewer (Chrome Extension for Realtor.com)
+House Reviewer is a way to rate houses listed for sale on realtor.com. All reviews are subject to content moderation by a trained Machine Learning model. 
 
-backend and frontend must run together:
-
+Instructions on Locally Running the Extension:
 backend:
 - cd backend
 - npm install
