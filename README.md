@@ -7,6 +7,11 @@ backend:
 - npm install
 - npm start
 
+content moderator:
+- cd content_mod
+- pip3 install -r requirements.txt
+- python3 -m flask --app content_moderation run
+
 run frontend:
 - cd house-review
 - npm run build
