@@ -8,7 +8,21 @@ const submitReview = async(req, res) =>{
 
     //add doc to db
     try {
-        const review = await reviews.create({date, rating, description})
+        const response = await axios.get('http://localhost:5000/data', {
+            params: {
+                param1: description,
+            }
+        });
+        const data = response.data
+        if (data[0] == 1)
+        {
+            const review = await reviews.create({date, rating, description})
+            console.log("Review Creation Successful!")
+        }
+        else
+        {
+            console.log("Inappropiate Description, Review Creation Failed.")
+        }
         res.status(200).json(review)
     }
     catch (error)
