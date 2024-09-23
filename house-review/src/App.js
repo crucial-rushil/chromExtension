@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import ReviewForm from './ReviewForm';
 import Toggle from './Toggle';
 import TextField from '@mui/material/TextField';
-
+import ReviewCard from './ReviewCard';
 
 function App() {
   const [url, setUrl] = useState('');
@@ -81,6 +81,12 @@ function App() {
         </div>
         <Toggle active = {activeToggle} setActive= {setActiveToggle} />
         {activeToggle === 'write' && <ReviewForm/>}
+        <ReviewCard
+          rating={4.5}
+          date="Sep 23, 2024"
+          reviewText="This product was amazing! It exceeded my expectations and I would definitely recommend it to others. blah blah blah blah blah blah blah blah blah blah blah blah"
+        />
+
       </header>
     </div>
   );
