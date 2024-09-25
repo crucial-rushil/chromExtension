@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
+import { useCardContext } from './useCardContext';
 
 const ReviewForm = () => {
+  const { dispatch } = useCardContext()
   const [date, setDate] = useState('');
   const [rating, setRating] = useState(2);
   const [description, setDescription] = useState('');
@@ -24,8 +26,10 @@ const ReviewForm = () => {
     if (response.ok) {
       alert("Review Added")
       console.log("Review Added");
+      dispatch({type: 'CREATE_CARD',payload: json})
     } else {
       console.log(json.error);
+      console.log("ur mum gae")
     }
     
     // Reset form fields after submission if needed
