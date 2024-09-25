@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 import reviews from './reviewModel.js'
 import axios from 'axios';
+import WebSocket from 'ws';
+// import { onReviewCreated } from './websocket.cjs'; // Import WebSocket functionality
+
+
 
 //Logic to post a review
 const submitReview = async(req, res) =>{
@@ -17,13 +21,17 @@ const submitReview = async(req, res) =>{
         if (data[0] == 1)
         {
             const review = await reviews.create({date, rating, description})
+            // onReviewCreated({ reviewId: 123, reviewText: "This is a great product!" });
+            
             console.log("Review Creation Successful!")
+            res.status(200).json(review)
         }
         else
         {
             console.log("Inappropiate Description, Review Creation Failed.")
+            res.status(400).json(req.body)
         }
-        res.status(200).json(review)
+        
     }
     catch (error)
     {

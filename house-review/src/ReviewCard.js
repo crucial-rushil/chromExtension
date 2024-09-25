@@ -42,7 +42,7 @@ const ReviewCard = ({ rating, date, reviewText }) => {
                 sx={{
                     display: '-webkit-box',
                     WebkitBoxOrient: 'vertical',
-                    WebkitLineClamp: expanded ? 'none' : 3, // limit to 3 lines
+                    WebkitLineClamp: expanded ? 'none' : 2, // limit to 3 lines
                     overflow: expanded ? 'visible' : 'hidden',
                     textOverflow: expanded ? 'none' : 'ellipsis',
                 }}
