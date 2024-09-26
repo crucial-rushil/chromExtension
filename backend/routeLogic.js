@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 import reviews from './reviewModel.js'
 import axios from 'axios';
-import WebSocket from 'ws';
-// import { onReviewCreated } from './websocket.cjs'; // Import WebSocket functionality
 
-
+//Global Value of Property_ID
+let propertyId = null;
 
 //Logic to post a review
 const submitReview = async(req, res) =>{
     const {date, rating, description} = req.body
-
+    console.log(`House propertyId: ${propertyId}`);  // You can access the propertyId here
+    console.log(typeof propertyId);
     //add doc to db
     try {
         const response = await axios.get('http://localhost:5000/data', {
@@ -18,10 +18,13 @@ const submitReview = async(req, res) =>{
             }
         });
         const data = response.data
+        if (!propertyId) {
+            console.log("Review Creation Failed: Invalid Property ID.");
+            return res.status(400).json({ message: "Invalid Property ID." });
+        }
         if (data[0] == 1)
         {
-            const review = await reviews.create({date, rating, description})
-            // onReviewCreated({ reviewId: 123, reviewText: "This is a great product!" });
+            const review = await reviews.create({date, rating, description, propertyId})
             
             console.log("Review Creation Successful!")
             res.status(200).json(review)
@@ -85,8 +88,8 @@ const getHouseDetails = async(req, res) => {
     
     //strip the ID from the URL
     const {url} = req.body
-    let propertyId = extractId(url)
-
+    propertyId = extractId(url)
+    
     let data = JSON.stringify({
     query: `query SpotOfferEvaluation($propertyId: ID!, $requestOrigin: String!, $partners: [String]) {
     spot_offer_evaluation(property_id: $propertyId) {

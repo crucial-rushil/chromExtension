@@ -17,6 +17,11 @@ const reviews = new Schema({
         required: true
     },
 
+    propertyId: {
+        type: String,
+        required: true
+    }
+
 }, {timestamps: true})
 
 export default mongoose.model('reviews',reviews)
