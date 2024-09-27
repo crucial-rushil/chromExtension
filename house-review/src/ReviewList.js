@@ -6,6 +6,7 @@ import { useCardContext } from './useCardContext';
 const ReviewList = () => {
   // const [reviews, setReviews] = useState([]);
   const {reviews, dispatch} = useCardContext()
+  const [propertyID,isNull] = useState('')
 
   // Fetch reviews from the API when the component mounts
   useEffect(() => {
@@ -29,30 +30,30 @@ const ReviewList = () => {
   }, [reviews]); // Triggers when 'reviews' changes
   
   return (
-    // <div>
-    //   {reviews.length > 0 ? (
-    //     reviews.map((review, index) => (
-    //       <ReviewCard
-    //         key={index}
-    //         rating={review.rating}
-    //         date='Sept 23, 2024'
-    //         reviewText={review.description}
-    //       />
-    //     ))
-    //   ) : (
-    //     <p>No reviews available.</p>
-    //   )}
-    // </div>
     <div>
-      {reviews.map((review, index) => (
-        <ReviewCard
-          key={index}
-          rating={review.rating}
-          date='Sept 23, 2024'
-          reviewText={review.description}
-        />
-      ))}
+      {reviews.length > 0 ? (
+        reviews.map((review, index) => (
+          <ReviewCard
+            key={index}
+            rating={review.rating}
+            date='Sept 23, 2024'
+            reviewText={review.description}
+          />
+        ))
+      ) : (
+        <p>No reviews for this house exist be the first one to leave a review!</p>
+      )}
     </div>
+    // <div>
+    //   {reviews.map((review, index) => (
+    //     <ReviewCard
+    //       key={index}
+    //       rating={review.rating}
+    //       date='Sept 23, 2024'
+    //       reviewText={review.description}
+    //     />
+    //   ))}
+    // </div>
   );
 };
 

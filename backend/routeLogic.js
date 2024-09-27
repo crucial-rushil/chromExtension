@@ -44,10 +44,12 @@ const submitReview = async(req, res) =>{
 
 //Logic to Get all Reviews
 const getReviews = async(req, res) => {
-
+    console.log(typeof propertyId)
     try {
-        const everyone = await reviews.find({}).sort({createdAt: -1}) //sort by descending order
-        res.status(200).json(everyone) //gives us user documents in an array
+        // const everyone = await reviews.find({}).sort({propertyId: -1}) //sort by descending order
+        const everyone = await reviews.find({ propertyId: propertyId }).sort({ propertyId: -1 });
+        console.log(everyone)
+        return res.status(200).json(everyone) //gives us user documents in an array
     }
     catch (error)
     {
@@ -89,7 +91,7 @@ const getHouseDetails = async(req, res) => {
     //strip the ID from the URL
     const {url} = req.body
     propertyId = extractId(url)
-    
+    console.log(propertyId)
     let data = JSON.stringify({
     query: `query SpotOfferEvaluation($propertyId: ID!, $requestOrigin: String!, $partners: [String]) {
     spot_offer_evaluation(property_id: $propertyId) {
