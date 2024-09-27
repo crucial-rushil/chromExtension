@@ -29,6 +29,7 @@ const ReviewForm = () => {
       dispatch({type: 'CREATE_CARD',payload: json})
     } else {
       console.log(json.error);
+      alert(json.error)
       console.log("ur mum gae")
     }
     

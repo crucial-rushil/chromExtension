@@ -22,6 +22,7 @@ function App() {
     sqft: '',
     bedrooms: ''
   });
+  const [propID,isNull] = useState('')
   const [activeToggle, setActiveToggle] = useState('browse');
 
   const handleInputChange = (e) => {
@@ -43,6 +44,7 @@ function App() {
 
       if (response.ok) {
         setDetails(json); // Update the state with fetched data
+        isNull('true')
         console.log("INFO SENT");
         console.log(json);
       } else {
@@ -87,7 +89,15 @@ function App() {
           date="Sep 23, 2024"
           reviewText="This product was amazing! It exceeded my expectations and I would definitely recommend it to others. blah blah blah blah blah blah blah blah blah blah blah blah"
         /> */}
-        <ReviewList></ReviewList>
+        {/* Make a conditional block here to check if propertyID is null or not which will decide to either render or not */}
+        {/* <ReviewList></ReviewList> */}
+        {propID === 'true' ? (
+          // <p>{details}</p>
+          <ReviewList />
+        ) : (
+        <p>Please search for a property first.</p>
+        )}
+
 
       </header>
     </div>
