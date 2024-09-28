@@ -1,5 +1,7 @@
-# House Reviewer (Chrome Extension for Realtor.com)
-House Reviewer is a way to rate houses listed for sale on realtor.com. All reviews are subject to content moderation by a trained Machine Learning model. 
+# House Reviewer 🏠 (Chrome Extension for Realtor.com) 
+House Reviewer is a way to rate houses listed for sale on realtor.com. People can let others know how a property is and any concerns they have. ALl reviews are subject to a content moderation bot. 
+
+Instructions for how to Run Locally: 
 
 Backend:
 - cd backend
@@ -13,6 +15,7 @@ content moderator:
 
 run frontend:
 - cd house-review
+- npm install
 - npm run build
 - go to chrome://extensions and click "load unpacked"
 - select the "build" directory (chromExtension/house-review/build)
@@ -22,5 +25,4 @@ How to Make Changes:
 - npm run build
 - hit the reload button in the extension on chrome://extensions
 
-How to Test Backend Routes:
-- use postman and send requests to localhost:4000/[route_name] and debug
+Note: this project requires Node.js and Flask
