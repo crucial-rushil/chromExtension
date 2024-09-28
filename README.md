@@ -1,5 +1,5 @@
 # House Reviewer 🏠 (Chrome Extension for Realtor.com) 
-House Reviewer is a way to rate houses listed for sale on realtor.com. People can let others know how a property is and any concerns they have. ALl reviews are subject to a content moderation bot. 
+House Reviewer is a way to rate houses listed for sale on realtor.com. People can let others know how a property is and any concerns they have. All reviews are screened for profanity and inappropiate slurs by a content moderation machine learning model. 
 
 Instructions for how to Run Locally: 
 
