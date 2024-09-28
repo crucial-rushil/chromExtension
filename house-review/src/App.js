@@ -91,7 +91,7 @@ function App() {
           <div>
             {activeToggle === 'browse' ? (
               <div>
-                <ReviewSummary totalReviews={totalReviews} starData={starData} />
+                {/* <ReviewSummary totalReviews={totalReviews} starData={starData} /> */}
                 <ReviewList />
               </div>
             ) : (

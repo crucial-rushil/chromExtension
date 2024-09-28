@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Box, Rating, Button, Dialog, DialogTitle, DialogContent } from '@mui/material';
 
-const ReviewCard = ({ rating, date, reviewText }) => {
+const ReviewCard = ({ rating, date, reviewText, name }) => {
 
     const [open, setOpen] = useState(false);
     const [expanded, setExpanded] = useState(false);
@@ -26,6 +26,9 @@ const ReviewCard = ({ rating, date, reviewText }) => {
         <Box display="flex" justifyContent="space-between" alignItems="center">
             {/* Rating and Date in the Upper Left */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
+                <Typography variant="caption" color="text.secondary" sx={{ marginBottom: 0.5 }}>
+                    Anonymous {name}
+                </Typography>
             <Rating value={rating} readOnly precision={0.5} />
             <Typography variant="caption" color="text.secondary">
                 {date}
