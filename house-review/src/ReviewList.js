@@ -28,7 +28,7 @@ const ReviewList = () => {
         console.error('Error fetching reviews:', error);
       }
       reviews.forEach((review) => {
-        rating = parseInt(review.rating,10)
+        let rating = parseInt(review.rating,10)
         starData[rating-1].percentage = starData[rating-1].percentage + 1
         console.log(`Review ID: ${review.id}`);
         console.log(`Rating: ${review.ratings.star} stars`);
