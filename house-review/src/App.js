@@ -7,6 +7,7 @@ import Toggle from './Toggle';
 import TextField from '@mui/material/TextField';
 import ReviewCard from './ReviewCard';
 import ReviewList from './ReviewList.js'
+import ReviewSummary from './ReviewSummary.js'
 
 function App() {
 
@@ -24,6 +25,15 @@ function App() {
   });
   const [propID,isNull] = useState('')
   const [activeToggle, setActiveToggle] = useState('browse');
+
+  const totalReviews = 8953;
+  const starData = [
+    { percentage: 72 },
+    { percentage: 15 },
+    { percentage: 7 },
+    { percentage: 2 },
+    { percentage: 3 },
+  ];
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
@@ -66,15 +76,7 @@ function App() {
           <TextField id="outlined-basic" label="insert house URL here" variant="outlined" onChange = {handleInputChange}/>
           <button type="submit">begin search</button>
         </form>
-        {/* <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={url}
-            onChange={handleInputChange}
-            placeholder="insert house URL here"
-          />
-          <button type="submit">begin search</button>
-        </form> */}
+        
         <div>
           <p>the house selected:</p>
           <p>address: {details.address.line}, {details.address.city}, {details.address.state_code} {details.address.postal_code}</p>
@@ -84,20 +86,21 @@ function App() {
         </div>
         <Toggle active = {activeToggle} setActive= {setActiveToggle} />
         {activeToggle === 'write' && <ReviewForm/>}
-        {/* <ReviewCard
-          rating={4.5}
-          date="Sep 23, 2024"
-          reviewText="This product was amazing! It exceeded my expectations and I would definitely recommend it to others. blah blah blah blah blah blah blah blah blah blah blah blah"
-        /> */}
-        {/* Make a conditional block here to check if propertyID is null or not which will decide to either render or not */}
-        {/* <ReviewList></ReviewList> */}
+        
         {propID === 'true' ? (
-          // <p>{details}</p>
-          <ReviewList />
+          <div>
+            {activeToggle === 'browse' ? (
+              <div>
+                <ReviewSummary totalReviews={totalReviews} starData={starData} />
+                <ReviewList />
+              </div>
+            ) : (
+              <p>Toggle to browse to see the reviews.</p>
+            )}
+          </div>
         ) : (
-        <p>Please search for a property first.</p>
+          <p>Please search for a property first.</p>
         )}
-
 
       </header>
     </div>
