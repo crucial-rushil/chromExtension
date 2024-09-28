@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReviewCard from './ReviewCard'; // Your ReviewCard component
+import ReviewSummary from './ReviewSummary';
 import { useCardContext } from './useCardContext';
 
 const ReviewList = () => {
-  // const [reviews, setReviews] = useState([]);
+  
   const {reviews, dispatch} = useCardContext()
-  const [propertyID,isNull] = useState('')
+  const starData = [
+    { percentage: 0 },
+    { percentage: 0 },
+    { percentage: 0 },
+    { percentage: 0 },
+    { percentage: 0 },
+  ];
 
   // Fetch reviews from the API when the component mounts
   useEffect(() => {
@@ -20,6 +27,13 @@ const ReviewList = () => {
       } catch (error) {
         console.error('Error fetching reviews:', error);
       }
+      reviews.forEach((review) => {
+        rating = parseInt(review.rating,10)
+        starData[rating-1].percentage = starData[rating-1].percentage + 1
+        console.log(`Review ID: ${review.id}`);
+        console.log(`Rating: ${review.ratings.star} stars`);
+        console.log(`Comment: ${review.ratings.comment}`);
+      });
     };
 
     fetchReviews();
