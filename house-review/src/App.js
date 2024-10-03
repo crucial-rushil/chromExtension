@@ -4,10 +4,11 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import ReviewForm from './ReviewForm';
 import Toggle from './Toggle';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import ReviewCard from './ReviewCard';
 import ReviewList from './ReviewList.js'
 import ReviewSummary from './ReviewSummary.js'
+import { TextField, Button } from '@mui/material';
 
 function App() {
 
@@ -71,29 +72,48 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>welcome back Ava!</p>
-        <form onSubmit={handleSubmit}>
+        <p>House Reviewer 🏠</p>
+        
+        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <TextField 
             id="outlined-basic" 
             label="insert house URL here" 
             variant="outlined" 
             onChange={handleInputChange} 
+            fullWidth
+            size="small"
+            style={{ maxWidth: '400px' }}
           />
-          <button type="submit">begin search</button>
+          {/* <button type="submit" variant="contained" color="white" style={{ height: '40px', minWidth: '100px' }}> Begin Search</button> */}
+          <Button 
+          type="submit" 
+          variant="contained" 
+          style={{ 
+            backgroundColor: '#6d4ad6',  // Blue color for the button
+            color: 'white',              // White text color
+            height: '40px',              // Button height
+            minWidth: '100px',           // Minimum button width
+            borderRadius: '5px',         // Rounded corners
+            textTransform: 'none',
+            whiteSpace: 'nowrap',
+          }}
+           >
+          Begin Search
+          </Button>
         </form>
   
         {/* Box with house details */}
         {details && details.address ? (
           <div style={{ 
             backgroundColor: "#fbd085", 
-            padding: "20px", 
+            padding: "10px 20px 20px", 
             borderRadius: "10px", 
             fontSize: "14px", 
             fontWeight: "normal", 
             margin: "20px 0",  /* Adds margin to the top and bottom */
             width: "320px"
           }}>
-            <p style={{ fontWeight: "bold", marginBottom: "10px" }}>the house selected:</p>
+            <p style={{ fontWeight: "bold",marginTop: "5px", marginBottom: "10px" }}>Selected House Details</p>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               {/* Left column for bedrooms and bathrooms */}
               <div style={{ marginRight: "10px" }}>

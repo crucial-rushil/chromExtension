@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 import { useCardContext } from './useCardContext';
+import { Button } from '@mui/material';
 
 const ReviewForm = () => {
   const { dispatch } = useCardContext()
@@ -75,7 +76,22 @@ const ReviewForm = () => {
           required
         />
       </div>
-      <button type="submit">Submit Review</button>
+      <Button 
+          type="submit" 
+          variant="contained" 
+          style={{ 
+            backgroundColor: '#6d4ad6',  // Blue color for the button
+            color: 'white',              // White text color
+            height: '40px',              // Button height
+            minWidth: '100px',           // Minimum button width
+            borderRadius: '5px',         // Rounded corners
+            textTransform: 'none',
+            whiteSpace: 'nowrap',
+          }}
+           >
+          Submit Review
+          </Button>
+      {/* <button type="submit">Submit Review</button> */}
     </form>
   );
 };

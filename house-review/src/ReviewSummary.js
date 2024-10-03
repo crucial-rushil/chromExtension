@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Typography, LinearProgress, Rating, Card, CardContent } from "@mui/material";
 
-const ReviewSummary = ({ totalReviews, starData }) => {
+const ReviewSummary = ({ totalReviews, starData, starAverage }) => {
     return (
         <Card sx={{ maxWidth: '100%', margin: '20px auto', padding: 2, borderRadius: 2 }}>
           <CardContent>
@@ -12,9 +12,9 @@ const ReviewSummary = ({ totalReviews, starData }) => {
     
             {/* Average Star Rating and Total Reviews */}
             <Box display="flex" justifyContent="flex-start" alignItems="center" mb={2}>
-              <Rating value={4.5} precision={0.5} readOnly />
+              <Rating value={starAverage} precision={0.5} readOnly />
               <Typography variant="body2" ml={1}>
-                4.5 / 5
+                {starAverage} / 5
               </Typography>
               <Typography variant="body2" color="textSecondary" ml={2}>
                 {totalReviews.toLocaleString()} global ratings
@@ -29,8 +29,16 @@ const ReviewSummary = ({ totalReviews, starData }) => {
                   <LinearProgress
                     variant="determinate"
                     value={star.percentage}
-                    sx={{ flexGrow: 1, height: 10, mx: 2, borderRadius: 5 }}
-                  />
+                    sx={{ flexGrow: 1, height: 10, mx: 2, borderRadius: 5, 
+                      backgroundColor: '#a594f9',
+                      '& .MuiLinearProgress-bar': {
+                        backgroundColor: '#6d4ad6',  // Color for the filled part of the bar
+                      },
+                      '& .MuiLinearProgress-root': {
+                        backgroundColor: '#a594f9',     // Color for the unfilled track
+                      },
+                      }}
+                   />
                   <Typography variant="body2" width="40px">{star.percentage}%</Typography>
                 </Box>
               ))}

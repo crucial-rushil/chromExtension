@@ -19,6 +19,8 @@ const ReviewList = () => {
     "Camel", "Llama", "Alpaca", "Donkey", "Mule", "Yak", "Buffalo", "Bison", "Moose", "Reindeer"
   ];
 
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
   const {reviews, dispatch} = useCardContext()
   const [starData, setStarData] = useState([
     { percentage: 0 },
@@ -27,7 +29,7 @@ const ReviewList = () => {
     { percentage: 0 },
     { percentage: 0 },
   ]); // State to hold starData
-
+  const [average, setAverage] = useState(0)
   // Fetch reviews from the API when the component mounts
   useEffect(() => {
     const fetchReviews = async () => {
@@ -54,9 +56,36 @@ const ReviewList = () => {
         starCount[5 - rating]++;
       });
       
+      let sum = 0
+      for (let i=0; i<starCount.length; i++)
+        {
+          sum += starCount[i]*[5-i]
+        }
+      sum = sum / reviews.length
+      sum = Math.round(sum * 2) / 2;
+      setAverage(sum)
+
       const calculatedStarData = starCount.map(count => ({
         percentage: Math.round((count / reviews.length) * 100)
       }));
+
+      reviews.sort((a, b) => {
+        // Convert the date strings to Date objects
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        
+        // Sort in descending order (most recent first)
+        return dateB - dateA; // Negative value if dateA is more recent, positive if dateB is more recent
+      });
+
+      reviews.forEach((review) => {
+        const date = new Date(review.date);
+        const month = monthNames[date.getMonth()];
+        const day = date.getDate();
+        const year = date.getFullYear();
+        const formattedDate = `${month} ${day}, ${year}`;
+        review.date = formattedDate
+      });
       
       setStarData(calculatedStarData); // Update starData with the correct structure
     }
@@ -69,7 +98,7 @@ const ReviewList = () => {
   return (
     <div>
       <div>
-      {starData && <ReviewSummary totalReviews={reviews.length} starData={starData} />}
+      {starData && <ReviewSummary totalReviews={reviews.length} starData={starData} starAverage={average}/>}
       </div>
       <div>
         {reviews.length > 0 ? (
@@ -77,7 +106,7 @@ const ReviewList = () => {
             <ReviewCard
               key={index}
               rating={review.rating}
-              date='Sept 23, 2024'
+              date={review.date}
               reviewText={review.description}
               name = {animalNames[Math.floor(Math.random() * 100)]}
             />
