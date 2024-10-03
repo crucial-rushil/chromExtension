@@ -73,20 +73,48 @@ function App() {
       <header className="App-header">
         <p>welcome back Ava!</p>
         <form onSubmit={handleSubmit}>
-          <TextField id="outlined-basic" label="insert house URL here" variant="outlined" onChange = {handleInputChange}/>
+          <TextField 
+            id="outlined-basic" 
+            label="insert house URL here" 
+            variant="outlined" 
+            onChange={handleInputChange} 
+          />
           <button type="submit">begin search</button>
         </form>
-        
-        <div>
-          <p>the house selected:</p>
-          <p>address: {details.address.line}, {details.address.city}, {details.address.state_code} {details.address.postal_code}</p>
-          <p>bed: {details.bedrooms}</p>
-          <p>bath: {details.baths}</p>
-          <p>sq feet: {details.sqft}</p>
-        </div>
-        <Toggle active = {activeToggle} setActive= {setActiveToggle} />
-        {activeToggle === 'write' && <ReviewForm/>}
-        
+  
+        {/* Box with house details */}
+        {details && details.address ? (
+          <div style={{ 
+            backgroundColor: "#fbd085", 
+            padding: "20px", 
+            borderRadius: "10px", 
+            fontSize: "14px", 
+            fontWeight: "normal", 
+            margin: "20px 0",  /* Adds margin to the top and bottom */
+            width: "320px"
+          }}>
+            <p style={{ fontWeight: "bold", marginBottom: "10px" }}>the house selected:</p>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {/* Left column for bedrooms and bathrooms */}
+              <div style={{ marginRight: "10px" }}>
+                {details.bedrooms && <p>{details.bedrooms} bedroom</p>}
+                {details.baths && <p>{details.baths} bathroom</p>}
+              </div>
+              {/* Right column for address */}
+              <div>
+                <p>{details.address.line}</p>
+                <p>{details.address.city}, {details.address.state_code} {details.address.postal_code}</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p>No house selected yet</p>
+        )}
+  
+        {/* Toggle functionality */}
+        <Toggle active={activeToggle} setActive={setActiveToggle} />
+        {activeToggle === 'write' && <ReviewForm />}
+  
         {propID === 'true' ? (
           <div>
             {activeToggle === 'browse' ? (
@@ -101,10 +129,10 @@ function App() {
         ) : (
           <p>Please search for a property first.</p>
         )}
-
+  
       </header>
     </div>
-  );
+  );  
 }
 
 export default App;
