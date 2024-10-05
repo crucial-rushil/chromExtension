@@ -3,24 +3,24 @@ House Reviewer is a platform for rating and reviewing properties listed for sale
 
 ⚙️ Instructions for Running Locally:
 
-Backend:
-- cd backend
-- npm install
-- npm start
+# 📋 Backend:
+* Navigate to the backend directory using `cd backend`.
+* Run `npm install` to install the necessary dependencies.
+* Start the backend with `npm start`.
 
-content moderator:
+# 📺 Content Moderator:
 - cd content_mod
 - pip3 install -r requirements.txt
 - python3 -m flask --app content_moderation run
 
-run frontend:
+# 👩‍💻 Frontend:
 - cd house-review
 - npm install
 - npm run build
 - go to chrome://extensions and click "load unpacked"
 - select the "build" directory (chromExtension/house-review/build)
 
-How to Make Changes:
+# 🔄 How to Make Changes:
 - locally make changes
 - npm run build
 - hit the reload button in the extension on chrome://extensions
