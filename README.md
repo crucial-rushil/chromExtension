@@ -1,7 +1,7 @@
 # House Reviewer 🏠 (Chrome Extension for Realtor.com) 
 House Reviewer is a platform for rating and reviewing properties listed for sale on Realtor.com. It enables users to share their insights and raise concerns about homes, helping others make informed decisions. All reviews are screened for inappropriate content, including profanity and slurs, using an advanced content moderation machine learning model to ensure a respectful and constructive environment.
 
-Instructions for how to Run Locally: 
+⚙️ Instructions for Running Locally:
 
 Backend:
 - cd backend
