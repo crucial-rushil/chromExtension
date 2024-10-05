@@ -31,7 +31,6 @@ const ReviewForm = () => {
     } else {
       console.log(json.error);
       alert(json.error)
-      console.log("ur mum gae")
     }
     
     // Reset form fields after submission if needed
