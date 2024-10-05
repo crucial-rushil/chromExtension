@@ -4,10 +4,10 @@ House Reviewer is a platform for rating and reviewing properties listed for sale
 ⚙️ Instructions for Running Locally:
 
 ## 📋 Backend:
+* Make your own MongoDB cluster and insert the database connection URL into the .env file 
 * Navigate to the backend directory using `cd backend`
 * Run `npm install` to install the necessary dependencies
 * Start the backend with `npm start`
-* Make your own MongoDB cluster and insert the database connection URL into the .env file 
 
 ## 📺 Content Moderator:
 * Navigate to the content_mod directory using `cd content_mod`
