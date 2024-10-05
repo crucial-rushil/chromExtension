@@ -7,6 +7,7 @@ House Reviewer is a platform for rating and reviewing properties listed for sale
 * Navigate to the backend directory using `cd backend`
 * Run `npm install` to install the necessary dependencies
 * Start the backend with `npm start`
+* Make your own MongoDB cluster and insert the database connection URL into the .env file 
 
 ## 📺 Content Moderator:
 * Navigate to the content_mod directory using `cd content_mod`
@@ -26,3 +27,5 @@ House Reviewer is a platform for rating and reviewing properties listed for sale
 * Hit the reload button in the extension on chrome://extensions
 
 Note: this project requires Node.js and Flask
+
+
