@@ -12,7 +12,7 @@ House Reviewer is a platform for rating and reviewing properties listed for sale
 ## 📺 Content Moderator:
 * Navigate to the content_mod directory using `cd content_mod`
 * Install Python dependencies using `pip3 install -r requirements.txt`
-* Start the Flask app with `python3 -m flask --app content_moderation` run
+* Start the Flask app with `python3 -m flask --app content_moderation run` 
 
 ## 👩‍💻 Frontend:
 * Navigate to the house-review directory `cd house-review`
